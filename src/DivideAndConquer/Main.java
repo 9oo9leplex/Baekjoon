@@ -7,49 +7,58 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int n,arr[];
+	static int N, arr[][];
+	static StringBuilder sb;
 	
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		n = Integer.parseInt(br.readLine());
-		arr = new int[n];
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		for(int i=0;i<n;i++)
-			arr[i] = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(br.readLine());
+		arr = new int[N][N];
+		sb = new StringBuilder();
 		
-		sol(0,n);
+		String[] s = new String[N];
+		for(int i=0;i<N;i++) {
+			s = br.readLine().split("");
+			for(int j=0;j<N;j++)
+				arr[i][j] = Integer.parseInt(s[j]);
+		}
+		
+		sol(0,0,N);
+		System.out.println(sb);
 	}
 
-	private static void sol(int start, int end) {
-		 
-		if(start < end) {
-			int mid = (start+end)/2;
-			sol(start,mid);
-			sol(mid+1,end);
-			
-			int p = start;
-			int q = mid+1;
-			int idx = p;
-			
-			while(p <= mid || q <= end) {
-				if(q>end || (p<=mid && arr[p] < arr[q])) {
-					
-				}
+	private static void sol(int r, int c, int len) {
+		
+		if(inArea(r, c, len)) {
+			sb.append(arr[r][c]);
+			return;
+		}
+		
+		sb.append("(");
+		int half = len/2;
+		sol(r,c,half);
+		sol(r,c+half,half);
+		sol(r+half,c,half);
+		sol(r+half,c+half,half);
+		sb.append(")");
+		
+	}
+
+	private static boolean inArea(int r, int c, int len) {
+		
+		if(r < 0 && c < 0 && r >= N && c >= N) return false;
+		int tmp = arr[r][c];
+		for(int i=r;i<r+len;i++) {
+			for(int j=c;j<c+len;j++) {
+				if(tmp != arr[i][j]) return false;
 			}
 		}
 		
-		sol(start,end/2);
-		sol(end/2,end);
+		return true;
 	}
 
-	private static void swap(int start, int end) {
-		if(arr[start] > arr[end]) {
-			int tmp = arr[start];
-			arr[start] = arr[end];
-			arr[end] = tmp;
-		}
-	}
+	
 
 }
