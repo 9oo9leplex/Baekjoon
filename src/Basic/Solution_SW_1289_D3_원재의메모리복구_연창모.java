@@ -1,4 +1,4 @@
-package com.ssafy.class0203;
+package Basic;
 
 import java.io.FileInputStream;
 import java.io.IOException;
