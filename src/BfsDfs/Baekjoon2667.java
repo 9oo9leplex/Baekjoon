@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Main {
+public class Baekjoon2667 {
 
 	static int n, cnt, result, map[][];
 	static int[] dr = { -1, 0, 1, 0 };
@@ -69,4 +69,5 @@ public class Main {
 	private static boolean inArea(int start, int end) {
 		return start >= 0 && start < n && end >= 0 && end < n;
 	}
+
 }

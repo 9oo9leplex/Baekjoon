@@ -69,7 +69,5 @@ public class Baekjoon1012 {
 		return nr >= 0 && nr < r && nc >= 0 && nc < c;
 	}
 
-}
-
 
 }
