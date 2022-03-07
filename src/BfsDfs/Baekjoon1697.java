@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon1697 {
 
 	static int map[],n,sister,result;
 	static boolean visit[];
