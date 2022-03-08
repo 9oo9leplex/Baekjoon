@@ -7,7 +7,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+import BfsDfs.Main.Land;
+
+public class Baekjoon4963 {
 
 	static int map[][],w,h,result;
 	static boolean visit[][];
@@ -95,4 +97,5 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr < h && nr >= 0 && nc < w && nc >= 0;
 	}
+
 }
