@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import BfsDfs.Main.Land;
-
 public class Baekjoon4963 {
 
 	static int map[][],w,h,result;

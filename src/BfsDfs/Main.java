@@ -9,90 +9,50 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int map[][],w,h,result;
+	static int map[][],n,result,max;
 	static boolean visit[][];
-	static Queue<Land> q;
-	static int[] dr = {-1,-1,-1,0,1,1,1,0};
-	static int[] dc = {-1,0,1,1,1,0,-1,-1};
-	static class Land{
-		int x,y;
-
-		public Land(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-		
-	}
+	static int[] dr = {-1,0,1,0};
+	static int[] dc = {0,1,0,-1};
 	
 	public static void main(String[] args) throws IOException{
 	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		n = Integer.parseInt(br.readLine());
 		StringTokenizer st;
-		StringBuilder sb = new StringBuilder();
-		Land land;
-		while(true) {
+		
+		map = new int[n][n];
+		
+		for(int i=0;i<n;i++) {
 			st = new StringTokenizer(br.readLine());
-			w = Integer.parseInt(st.nextToken()); 
-			h = Integer.parseInt(st.nextToken());
-			
-			if(w == 0 && h ==0) break;
-			
-			map = new int[h][w];
-			visit = new boolean[h][w];
-			q = new LinkedList<>();
-			
-			for(int i=0;i<h;i++) {
-				st = new StringTokenizer(br.readLine());
-				for(int j=0;j<w;j++) {
-					map[i][j] = Integer.parseInt(st.nextToken());
-					if(map[i][j] == 1) q.add(new Land(i, j));
-				}
+			for(int j=0;j<n;j++) {
+				int height = Integer.parseInt(st.nextToken());
+				map[i][j] = height;
+				max = Math.max(max, height);
 			}
-			result = 0;
-			while(!q.isEmpty()) {
-				land = q.poll();
-				if(visit[land.x][land.y]) continue;
-				bfs(land);
-				result++;
-			}
-			
-			sb.append(result).append("\n");
 		}
-		System.out.println(sb);
+		
+		for(int i=0;i<=max;i++) {
+			visit = new boolean[n][n];
+			bfs(0,0,i);
+		}
+		
 	}
 
-	private static void bfs(Land land) {
+	private static void bfs(int x, int y, int h) {
 		
-		if(visit[land.x][land.y] || map[land.x][land.y] == 0) return;
-		visit[land.x][land.y] = true;
+		if(visit[x][y]) return;
+		visit[x][y] = true;
 		
-		for(int i=0;i<8;i++) {
-			int nr = land.x + dr[i];
-			int nc = land.y + dc[i];
-			if(inArea(nr,nc) && !visit[nr][nc] && map[nr][nc] == 1)
-				bfs(new Land(nr, nc));
-		}
-		
-		/*
-		while(!q.isEmpty()) {
-			
-			Land land = q.poll();
-			if(visit[land.x][land.y] || map[land.x][land.y] == 0) continue;
-			
-			visit[land.x][land.y] = true;
-			result++;
-			
-			for(int i=0;i<8;i++) {
-				int nr = land.x + dr[i];
-				int nc = land.y + dc[i];
-				if(inArea(nr,nc) && !visit[nr][nc] && map[nr][nc] == 1)
-					q.add(new Land(nr, nc));
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n;j++) {
+				if(!visit[i][j] && map[i][j] >= h) bfs(i,j,h);
 			}
 		}
-		*/
+		
 	}
 
 	private static boolean inArea(int nr, int nc) {
-		return nr < h && nr >= 0 && nc < w && nc >= 0;
+		return nr < n && nr >= 0 && nc < n && nc >= 0;
 	}
 }
