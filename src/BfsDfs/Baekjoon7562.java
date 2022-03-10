@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon7562 {
 
 	static int map[][], n, m, result;
 	static boolean visit[][];
@@ -92,4 +92,5 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr < m && nr >= 0 && nc < m && nc >= 0;
 	}
+
 }
