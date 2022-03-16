@@ -8,8 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import Greedy.Main.MeetingRoom;
-
 public class Baekjoon1931 {
 
 	static class MeetingRoom implements Comparable<MeetingRoom>{
