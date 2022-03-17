@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+public class Baekjoon14241 {
+
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -40,5 +40,4 @@ public class Main {
 		System.out.println(result);
 		
 	}
-
 }
