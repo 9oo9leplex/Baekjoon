@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+import Greedy.Main.Person;
+
+public class Beakjoon1946 {
+
 	static class Person implements Comparable<Person>{
 		int f,s;
 
@@ -61,5 +60,4 @@ public class Main {
 		}
 		System.out.println(sb);
 	}
-
 }
