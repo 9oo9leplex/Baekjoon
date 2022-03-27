@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import Implementation.Main.Turtle;
-
 public class Baekjoon8911 {
 
 	static class Turtle{
