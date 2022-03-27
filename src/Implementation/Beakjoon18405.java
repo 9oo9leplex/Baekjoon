@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+public class Beakjoon18405 {
+
 	static int dr[] = {-1,0,1,0};
 	static int dc[] = {0,1,0,-1};
 	static int map[][], n,s;
@@ -101,8 +101,4 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nr < n && nc >= 0 && nc < n;
 	}
-	
-	
-	
-	
 }
