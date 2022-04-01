@@ -3,14 +3,10 @@ package Implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+public class Baekjoon14500 {
+
 	static int r,c,dir,map[][],min;
 	static boolean visit[][];
 	static int[] dr = {0,1,0,-1};
@@ -101,32 +97,5 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nc >= 0 && nr < r && nc < c;
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
