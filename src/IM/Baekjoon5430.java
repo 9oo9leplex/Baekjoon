@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
-public class Main {
-	
-	static StringBuilder sb = new StringBuilder();
+public class Baekjoon5430 {
+
+static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
 
@@ -85,21 +85,4 @@ public class Main {
 		sb.append("]").append("\n");
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
-
