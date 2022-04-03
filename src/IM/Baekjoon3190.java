@@ -3,13 +3,11 @@ package IM;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon3190 {
 
 	static int n, k, map[][], max;
 
@@ -142,4 +140,5 @@ public class Main {
 	private static boolean inArea(int r, int c) {
 		return r >= 0 && c >= 0 && r < n && c < n;
 	}
+
 }
