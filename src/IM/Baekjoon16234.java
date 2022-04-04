@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {	
-	
+public class Baekjoon16234 {
+
 	static int n,min,max;
 	static int map[][];
 	static boolean visit[][];
@@ -40,7 +39,7 @@ public class Main {
 			if(flag) break;
 			
 			day++;
-//			System.out.println(day);
+
 		}
 		System.out.println(day);
 	}	
@@ -64,10 +63,7 @@ public class Main {
 				value = map[i][j];
 				sum = value;
 				cnt = 1;
-				
-//				for(int q=0;q<n;q++) System.out.println(Arrays.toString(map[q]));
-//				System.out.println();
-				
+			
 				while(!move.isEmpty()) {
 					tmp = move.remove(0);
 					for(int k=0;k<4;k++) {
@@ -76,7 +72,7 @@ public class Main {
 						
 						if(inArea(nr, nc) && !visit[nr][nc]) {
 							diff = Math.abs(map[tmp[0]][tmp[1]] - map[nr][nc]);
-//							System.out.println("ij: "+tmp[0]+", "+tmp[1]+", nrnc: "+nr+", "+nc+", diff: "+diff);
+
 							if(diff >= min && diff <= max) {
 								list.add(new int[] {nr,nc});
 								move.add(new int[] {nr,nc});							
@@ -88,11 +84,7 @@ public class Main {
 						}
 					}
 				}
-				
-//				for(int q=0;q<n;q++) System.out.println(Arrays.toString(visit[q]));
-//				System.out.println();
-				
-				
+		
 				if(list.size() > 1) flag = false;
 				
 				avg = sum / cnt;
@@ -100,8 +92,6 @@ public class Main {
 					tmp = list.remove(0);
 					map[tmp[0]][tmp[1]] = avg;
 				}
-//				for(int q=0;q<n;q++) System.out.println(Arrays.toString(map[q]));
-//				System.out.println();
 			}
 		}
 		
@@ -110,19 +100,4 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nc >= 0 && nr < n && nc < n;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
