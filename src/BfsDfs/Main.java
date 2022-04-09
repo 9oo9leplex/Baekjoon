@@ -4,68 +4,86 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
 
-	static int F,S,G,U,D,min;
-	static boolean[] visit;
+	static int R,C;
+	static char[][] map;
+	static boolean[][] visit;
+	
+	static int[] dr = {-1,0,1,0};
+	static int[] dc = {0,1,0,-1};
+	static class Node{
+		int r,c,cost;	
+
+		public Node(int r, int c, int cost) {
+			super();
+			this.r = r;
+			this.c = c;
+			this.cost = cost;
+		}
+		
+	}
+	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		F = Integer.parseInt(st.nextToken()); // 총 높이
-		S = Integer.parseInt(st.nextToken()); // 현재 위치
-		G = Integer.parseInt(st.nextToken()); // 가야할 층
-		U = Integer.parseInt(st.nextToken()); // UP
-		D = Integer.parseInt(st.nextToken()); // DOWN
 		
-		visit = new boolean[F+1];
+		R = Integer.parseInt(st.nextToken());
+		C = Integer.parseInt(st.nextToken());
 		
-		bfs();
-	}
-
-	private static void bfs() {
+		map = new char[R][C];
 		
-		Queue<Integer> q = new LinkedList<>();
-		q.add(S);
-
-		
-		int time = 0;
-		while(!q.isEmpty()) {
-			int cnt = 0;
-			int size = q.size();
-			while(size > cnt) {
-				
-				int now = q.poll();
-//				System.out.println(now);
-				if(visit[now]) {
-					cnt++;
-					continue;
-				}
-				visit[now] = true;
-				if(now == G) {
-					System.out.println(time);
-					System.exit(0);
-				}
-				
-//				System.out.println(inArea(now+U));
-//				System.out.println(inArea(now-D));
-				
-				if(inArea(now+U)) q.add(now+U);
-				if(inArea(now-D)) q.add(now-D);
-				
-				cnt++;
-			}
-			time++;
+		for(int i=0;i<R;i++) {
+			map[i] = br.readLine().toCharArray();
 		}
-		System.out.println("use the stairs");
+		
+		int min = Integer.MIN_VALUE;
+		int value;
+		for(int i=0;i<R;i++) {
+			for(int j=0;j<C;j++) {
+				if(map[i][j] == 'L') {
+					visit = new boolean[R][C];
+					value = bfs(i,j);
+					min = Math.max(min, value);
+				}
+			}
+		}
+		System.out.println(min);
 	}
 
-	private static boolean inArea(int now) {
-		return now <= F && now >= 1;
+	private static int bfs(int r, int c) {
+		
+		Queue<Node> q = new LinkedList<>();
+		q.add(new Node(r, c, 0));
+		visit[r][c] = true;
+		int day = 0;
+		
+		while(!q.isEmpty()) {
+			
+			Node tmp = q.poll();
+			
+			for(int i=0;i<4;i++) {
+				int nr = tmp.r + dr[i];
+				int nc = tmp.c + dc[i];
+				
+				if(inArea(nr, nc) && !visit[nr][nc] && map[nr][nc] == 'L') {
+					day = Math.max(day, tmp.cost+1);
+					visit[nr][nc] = true;
+					q.add(new Node(nr, nc, tmp.cost+1));
+				}
+			
+			}
+		}
+		
+		return day;
+	}
+
+	private static boolean inArea(int nr, int nc) {
+		return nr >= 0 && nc >= 0 && nr < R && nc < C;
 	}
 
 	
