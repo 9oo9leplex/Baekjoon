@@ -7,55 +7,43 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException{
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int n = Integer.parseInt(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken());
 		
-		char[] arr = br.readLine().toCharArray();
-		
-		Queue<Character> q = new LinkedList<>();
-		Deque<Character> dq = new LinkedList<>();
-		
-		int len = arr.length % 2 == 1 ? arr.length-1 : arr.length;
-		int loop = 1;
-		
-		while(true) {
-			if(len % 2 == 1) {
-				loop = arr.length - 1;
-				break;
-			}
-			if(len == 2) {
-				loop++;
-				break;
-			}
-			len /= 2;
-			loop++;
+		int tmp = n;
+		int cnt = 0;
+		while(tmp != 0) {
+			tmp /= 2;
+			cnt++;
+		}
+
+		if(k == 1) {
+			System.out.println((int)Math.pow(2, cnt) - n);
+			return;
 		}
 		
-		n %= loop;
-		len = arr.length;
-//		System.out.println(len);
-		char[] tmp = new char[len];
-		tmp[0] = arr[0];
-		int idx;
-		for(int j=0;j<n;j++) {
-			System.out.println("j: "+j+", "+Arrays.toString(arr));
-			idx = 1;
-			for(int i=1;i<len;i++) {
-//				System.out.println("i: "+i+", idx: "+idx);
-				if(i%2 == 1) tmp[i] = arr[len-idx++];
-				else tmp[i] = arr[i/2];
-//				System.out.println(Arrays.toString(tmp));
-			}
-			arr = tmp.clone();
-		}
+		int arr[] = new int[k];
+		for(int i=0;i<k;i++)
+			arr[i] = cnt - i - 1;
 		
-		System.out.println(Arrays.toString(arr));
+//		arr[k-2] = arr[k-1] = cnt-k+1;
+		
+		int sum = 0;
+		for(int a : arr)
+			sum += Math.pow(2,a);
+//		System.out.println("sum: "+sum+", n: "+n);
+		if(sum >= n) System.out.println(sum - n);
+		else System.out.println((int)(sum + Math.pow(2,arr[k-1]) - n));
+
 	}
 
 }
