@@ -3,12 +3,10 @@ package Simulation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collections;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+public class Baekjoon1063 {
+
 	public static void main(String[] args) throws IOException{
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -124,10 +122,3 @@ public class Main {
 		return kr >= 0 && kr < 8 && kc >= 0 && kc < 8;
 	}
 }
-
-
-
-
-
-
-
