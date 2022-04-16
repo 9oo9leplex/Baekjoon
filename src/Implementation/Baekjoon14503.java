@@ -3,6 +3,7 @@ package Implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Baekjoon14503 {
@@ -45,6 +46,9 @@ public class Baekjoon14503 {
 		
 		while(true) {
 
+			for(int i=0;i<r;i++) System.out.println(Arrays.toString(map[i]));
+			System.out.println();
+			
 			if(!inArea(row, col) || !flag2) break;
 			
 			flag = true;
