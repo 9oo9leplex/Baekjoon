@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon3190 {
 
 	static int n, a, cnt, map[][], dirCnt;
 	static int[] dr = {-1,0,1,0};
@@ -118,5 +117,4 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nr < n && nc >= 0 && nc < n;
 	}
-
 }
