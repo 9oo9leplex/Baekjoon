@@ -9,8 +9,6 @@ import java.util.StringTokenizer;
 
 public class Baekjoon16509 {
 
-	static int N,K,belt[];
-	static boolean robot[];
 	static class Horse{
 		int r,c;
 
@@ -19,6 +17,11 @@ public class Baekjoon16509 {
 			this.r = r;
 			this.c = c;
 		}
+
+		@Override
+		public String toString() {
+			return "Horse [r=" + r + ", c=" + c + "]";
+		}
 		
 	}
 	static boolean[][] visit;
@@ -26,17 +29,15 @@ public class Baekjoon16509 {
 	static int dr[] = {-1,0,1,0};
 	static int dc[] = {0,1,0,-1};
 	static int ddr[] = {-1,-1,1,1};
-	static int ddc[] = {-1,1,1,-11};
-	
-	
-//	static int dr[] = {-3,-3,-2,2,3,3,2,-2};
-//	static int dc[] = {-2,2,3,3,2,-2,-3,-3};
+	static int ddc[] = {-1,1,1,-1};
 	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		Horse sang = new Horse(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+		
 		st = new StringTokenizer(br.readLine());
 		Horse king = new Horse(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 		
@@ -47,22 +48,14 @@ public class Baekjoon16509 {
 		visit = new boolean[10][9];
 		
 		while(!q.isEmpty()) {
+
 			int size = q.size();
 			int cnt = 0;
 			
 			while(size > cnt) {
 				Horse next = q.poll();
-				if(visit[next.r][next.c]) {
-					cnt++;
-					continue;
-				}
-				
-				System.out.println(result+": now["+next.r+","+next.c+"], king["+king.r+","+king.c+"]");
-				
-				if(next.r == king.r && next.c == king.c) {
-					System.out.println(result);
-					return;
-				}
+				cnt++;
+				if(visit[next.r][next.c]) continue;
 				
 				visit[next.r][next.c] = true;
 				
@@ -70,31 +63,30 @@ public class Baekjoon16509 {
 					int nr = next.r + dr[i];
 					int nc = next.c + dc[i];
 					
-					if(inArea(nr,nc) && (nr != king.r && nc != king.c)) {
+					if(!inArea(nr,nc) || (nr == king.r && nc == king.c)) continue; 
 						
 						int nnr,nnc;
-						boolean flag;
+						
 						for(int j=0;j<2;j++) {
 							nnr = nr;
 							nnc = nc;
-							System.out.println("[nr,nc]: ["+nr+","+nc+"]");
-							flag = true;
-							for(int k=0;k<2;k++) {
-								nnr += ddr[(i+j)%4];
-								nnc += ddc[(i+j)%4];
-								System.out.println("[nnr,nnc]: ["+nnr+","+nnc+"]");
-								// 첫번째는 왕과 만나면 안되고
-								// 두번째는 만나도 됨
-								if(!inArea(nnr,nnc)) flag = false;
-								if(k==1 && (nnr == king.r && nnc == king.c)) flag = false;
+							
+							nnr += ddr[(i+j)%4];
+							nnc += ddc[(i+j)%4];
+							
+							if(!inArea(nnr,nnc) || (nnr == king.r && nnc == king.c)) continue;
+							
+							nnr += ddr[(i+j)%4];
+							nnc += ddc[(i+j)%4];
+							
+							if(!inArea(nnr,nnc) || visit[nnr][nnc]) continue;
+							if(nnr == king.r && nnc == king.c) {
+								System.out.println(result+1);
+								return;
 							}
-							
-							if(flag) q.add(new Horse(nnr, nnc));
-							
+							q.add(new Horse(nnr, nnc));
 						}
-					}
 				}
-				cnt++;
 			}
 			result++;
 		}
