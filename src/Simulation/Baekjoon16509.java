@@ -14,7 +14,6 @@ public class Baekjoon16509 {
 
 		public Horse(int r, int c) {
 			super();
-			this.r = r;
 			this.c = c;
 		}
 
@@ -60,26 +59,30 @@ public class Baekjoon16509 {
 				visit[next.r][next.c] = true;
 				
 				for(int i=0;i<4;i++) {
+					// 4방 탐색
 					int nr = next.r + dr[i];
 					int nc = next.c + dc[i];
 					
+					// 범위를 벗어나거나 왕과 겹치면 끝
 					if(!inArea(nr,nc) || (nr == king.r && nc == king.c)) continue; 
 						
 						int nnr,nnc;
-						
+						// 대각 2번 움직임
 						for(int j=0;j<2;j++) {
 							nnr = nr;
 							nnc = nc;
-							
+							// 1번 대각 1번 움직임
 							nnr += ddr[(i+j)%4];
 							nnc += ddc[(i+j)%4];
-							
+							// 범위 벗어나거나 왕과 겹치면 끝
 							if(!inArea(nnr,nnc) || (nnr == king.r && nnc == king.c)) continue;
 							
+							// 1번 대각 2번 움직임
 							nnr += ddr[(i+j)%4];
 							nnc += ddc[(i+j)%4];
-							
+							// 범위 벗어나거나 이미 방문한 곳이면 끝
 							if(!inArea(nnr,nnc) || visit[nnr][nnc]) continue;
+							// 왕 자리와 같다면 종료
 							if(nnr == king.r && nnc == king.c) {
 								System.out.println(result+1);
 								return;
