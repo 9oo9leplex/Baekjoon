@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon13265 {
 
 	static int n,m,map[][];
 	static int[] color;
@@ -40,7 +40,7 @@ public class Main {
 			
 			flag = false;
 			bfs(0);
-			
+			// 그래프가 나뉘어있다면 나머지 탐색
 			for(int i=0;i<n;i++)
 				if(color[i] == 0) bfs(i);
 			
@@ -63,7 +63,7 @@ public class Main {
 			
 			for(int i=0;i<n;i++) {
 				// 자기 자신과 같다면 통과
-//				if(now == i) continue;
+				if(now == i) continue;
 				// 현재 - 다음 위치가 연결돼있다면
 				if(map[now][i] == 1) {
 					// 색을 아직 안칠했다면
@@ -85,8 +85,4 @@ public class Main {
 		}
 	}
 
-	
-
-
-	
 }

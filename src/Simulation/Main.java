@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
-	
+	/*
 	static int total = 720;
 	
 	static class TimeTable implements Comparable<TimeTable>{
@@ -27,13 +27,6 @@ public class Main {
 			if(this.start == o.start) return this.start - o.start;
 			return this.start - o.start;
 		}
-		/*
-		 * if(this.start > o.start) return this.start - o.start;
-			else if(this.start < o.start) return o.start - this.start;
-			else {
-				if(this.end )
-			}
-		 */
 
 		@Override
 		public String toString() {
@@ -45,12 +38,23 @@ public class Main {
 	static List<TimeTable> time,sit;
 	static boolean[] seat;
 	static int n,t,p;
-	
+	*/
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new  StringTokenizer(br.readLine());
 		
+		int a = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(a+b).append("\n");
+		sb.append(a-b).append("\n");
+		sb.append(a*b).append("\n");
+		sb.append(a/b).append("\n");
+		sb.append(a%b).append("\n");
+		System.out.println(sb);
+		/*
 		n = Integer.parseInt(st.nextToken());
 		t = Integer.parseInt(st.nextToken());
 		p = Integer.parseInt(st.nextToken())-1;
@@ -130,7 +134,7 @@ public class Main {
 		
 		
 		total -= ( eH * 60 + eM ) - (sH * 60 + sM);
-		
+		*/
 	}
 }
 
