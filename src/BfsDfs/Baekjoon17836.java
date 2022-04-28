@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+public class Baekjoon17836 {
+
 	static int N,M,T,time,point,map[][];
 	static boolean[][] visit;
 	static boolean getSword, isFail;
