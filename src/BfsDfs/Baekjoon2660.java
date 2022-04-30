@@ -12,7 +12,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon2660 {
 
 	static int N,dp[][];
 	static boolean[] visit;
@@ -119,25 +119,3 @@ public class Main {
 		return cnt;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
