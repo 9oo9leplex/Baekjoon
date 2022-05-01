@@ -4,119 +4,114 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Queue;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Main {
 
-	static int N,dp[][];
-	static boolean[] visit;
-	static Set<Integer> set;
-	static class Person implements Comparable<Person>{
-		int index,cnt;
-
-		public Person(int index, int cnt) {
-			super();
-			this.index = index;
-			this.cnt = cnt;
-		}
-
-		@Override
-		public String toString() {
-			return "Person [index=" + index + ", cnt=" + cnt + "]";
-		}
-
-		@Override
-		public int compareTo(Person o) {
-			if(this.cnt == o.cnt) return this.index - o.index;
-			return this.cnt - o.cnt;
-		}
-		
-		
-	}
+	static int N,Q,map[][],usado[],value[][];
 	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		N = Integer.parseInt(br.readLine());
-		dp = new int[N+1][N+1];
+		N = Integer.parseInt(st.nextToken());
+		Q = Integer.parseInt(st.nextToken());
 		
-		StringTokenizer st;
+		map = new int[N][N];
+		value = new int[N][N];
+		usado = new int[N];
 		
-		int start,end;
+		int start,end,val,min;
 		
-		while(true) {
+		for(int i=0;i<N-1;i++) {
 			st = new StringTokenizer(br.readLine());
-			start = Integer.parseInt(st.nextToken());
-			end = Integer.parseInt(st.nextToken());
 			
-			if(start == -1 && end == -1) break;
+			start = Integer.parseInt(st.nextToken())-1;
+			end = Integer.parseInt(st.nextToken())-1;
+			val = Integer.parseInt(st.nextToken());
 			
-			dp[start][end] = dp[end][start] = 1;
+			map[start][end] = map[end][start] = val;
 		}
 		
-		List<Person> list = new ArrayList<>();
+//		List<Tube> list = new ArrayList<>();
 		
-		for(int i=1;i<=N;i++) {
-			visit = new boolean[N+1];
-			set = new HashSet<>();
-			list.add(new Person(i, dfs(i)));
+		for(int i=0;i<N;i++) {
+			min = 1000000000;
+			for(int j=0;j<N;j++) {
+				if(i==j || map[i][j] == 0) continue;
+				min = Math.min(min, map[i][j]);
+			}
+			usado[i] = min;
 		}
 		
-		Collections.sort(list);
-		
-		int min = list.get(0).cnt;
-		int cnt = 0;
-		StringBuilder index = new StringBuilder();
-		
-		for(Person p : list) {
-			if(min < p.cnt) break;
-			index.append(p.index).append(" ");
-			cnt++;
+		for(int i=0;i<N;i++) {
+			bfs(i);
 		}
 		
+//		for(int i=0;i<N;i++) {
+//			for(int j=0;j<N;j++) {
+//				if(map[i][j] == 0) continue;
+//				value[i][map[i][j]-1]++; 
+//			}
+//		}
+		
+//		for(int i=0;i<N;i++) System.out.println(Arrays.toString(map[i]));
+//		System.out.println();
+		
+//		for(int i=0;i<N;i++) {
+//			for(int j=N-2;j>=0;j--) {
+//				value[i][j] += value[i][j+1];
+//			}
+//		}
+			
+//		for(int i=0;i<N;i++) System.out.println(Arrays.toString(value[i]));
+//		System.out.println();
+		
+		int k,sum;
 		StringBuilder sb = new StringBuilder();
-		sb.append(min).append(" ").append(cnt);
+		
+		for(int i=0;i<Q;i++) {
+			st = new StringTokenizer(br.readLine());
+			k = Integer.parseInt(st.nextToken());
+			start = Integer.parseInt(st.nextToken())-1;
+		
+			sum = 0;
+			
+			for(int j=0;j<N;j++) {
+//				if(value[start][j] != 0) {
+//					sb.append(value[start][j]).append("\n");
+//					sum = value[start][j];
+//					break;
+//				}
+				
+//				System.out.println("[k,map[start][j]: ["+k+","+map[start][j]+"]");
+//				System.out.println(k <= map[start][j]);
+//				System.out.println(value[start][j] == 0);
+				if(k <= map[start][j]) sum++;
+//				if(map[start][j] != 0 && value[start][j] == 0) value[start][j] = sum;
+			}
+			sb.append(sum).append("\n");
+		}
+//		for(int i=0;i<N;i++) System.out.println(Arrays.toString(value[i]));
+//		System.out.println();
 		System.out.println(sb);
-		System.out.println(index);
+		
+
+//		for(int i=0;i<N;i++) System.out.println("유사도: "+usado[i]);
 	}
 
-	private static int dfs(int start) {
-
-		Queue<Integer> q = new LinkedList<>();
-		q.add(start);
+	private static void bfs(int start) {
 		
-		int tmp,len,cnt = 1;
-		
-		while(!q.isEmpty()) {
-			
-			len = q.size();
-			for(int i=0;i<len;i++) {
-				tmp = q.poll();
-				visit[tmp] = true;
-				
-				for(int j=1;j<=N;j++) {
-					if(tmp == j) continue;
-					if(dp[tmp][j] == 1 && !visit[j]) {
-						q.add(j);
-						set.add(j);
-					}
-				}
+		for(int i=0;i<N;i++) {
+			if(start == i) continue;
+			if(map[start][i] == 0) {
+				map[start][i] = map[i][start] = Math.min(usado[start], usado[i]);
 			}
-			
-			
-			if(set.size() == N-1) break;
-			
-			cnt++;
 		}
-		
-		return cnt;
+			
 	}
 }
 
