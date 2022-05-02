@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
-	
+public class Baekjoon2206 {
+
 	static int N,M,cnt=1,map[][], min = Integer.MAX_VALUE,dp[][];
 	static int[] dr = {-1,0,1,0};
 	static int[] dc = {0,1,0,-1};
@@ -137,25 +137,3 @@ public class Main {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
