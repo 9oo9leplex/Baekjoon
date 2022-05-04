@@ -10,26 +10,21 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
+		int n = Integer.parseInt(br.readLine());
 		StringTokenizer st;
 		
 		int a,b;
 		
 		StringBuilder sb = new StringBuilder();
-		while(true) {
+		for(int i=1;i<=n;i++) {
 			st = new StringTokenizer(br.readLine());
 			
 			a = Integer.parseInt(st.nextToken());
 			b = Integer.parseInt(st.nextToken());
 			
-			if( a == 0 && b == 0) break;
-			
-			sb.append(a+b).append("\n");
+			sb.append("Case #").append(i).append(": ").append(a).append(" + ").append(b).append(" = ").append(a+b).append("\n");
 			
 		}
-		
-		int c = 1000000000;
-		
-		System.out.println(c);
+		System.out.println(sb);
 	}
 }
