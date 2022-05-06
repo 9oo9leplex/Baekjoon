@@ -9,100 +9,123 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int N, M, map[][],dp[][],day,count;
+	static int N, M;
 	static boolean[][] visit;
-	
-	static class Cheese {
-		int r, c;
-
-		public Cheese(int r, int c) {
-			super();
-			this.r = r;
-			this.c = c;
-		}
-
-	}
+	static char[][] map;
 	
 	static int dr[] = { -1, 0, 1, 0 };
 	static int dc[] = { 0, 1, 0, -1 };
+	static class Node {
+		int r,c,t;
 
+		public Node(int r, int c, int t) {
+			super();
+			this.r = r;
+			this.c = c;
+			this.t = t;
+		}
+
+		@Override
+		public String toString() {
+			return "Node [r=" + r + ", c=" + c + ", t=" + t + "]";
+		}		
+	}
+	static Queue<Node> fires;
+	static Node sk;
+	
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringTokenizer st;
 
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-
-		map = new int[N][M];
-
-		for (int i = 0; i < N; i++) {
+		int tc = Integer.parseInt(br.readLine());
+		
+		char[] tmp;
+		StringBuilder sb = new StringBuilder();
+		int result;
+		
+		for(int t=0;t<tc;t++) {
 			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < M; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-				if(map[i][j] == 1) count++;
-			}
-		}
-
-		while(count != 0) {
+			
+			M = Integer.parseInt(st.nextToken());
+			N = Integer.parseInt(st.nextToken());
+			map = new char[N][M];
 			visit = new boolean[N][M];
-			dp = new int[N][M];
-			bfs();			
-			refreshMap();
-			day++;
-		}
-		System.out.println(day);
-	}
-
-	private static void refreshMap() {
-
-		for(int i=1;i<N-1;i++) {
-			for(int j=1;j<M-1;j++) {
-				if(dp[i][j] >= 2) {
-					map[i][j] = 0;
-					count--;
+			fires = new LinkedList<>(); 
+			
+			for(int i=0;i<N;i++) {
+				tmp = br.readLine().toCharArray();
+				for(int j=0;j<M;j++) {
+					map[i][j] = tmp[j];
+					switch(map[i][j]) {
+					case '@':
+						sk = new Node(i,j,1);
+						break;
+					case '*':
+						fires.add(new Node(i, j,0));
+						break;
+					}
 				}
 			}
+			result = bfs();
+			sb.append(result == Integer.MAX_VALUE ? "IMPOSSIBLE" : result).append("\n"); 	
 		}
-		
+		System.out.println(sb);
 	}
 
-	private static void bfs() {
-
-		Queue<Cheese> q = new LinkedList<>();
+	private static int bfs() {
 		
-		q.add(new Cheese(0, 0));
-		visit[0][0] = true;
-
-		Cheese c;
-		int nr,nc;
+		Queue<Node> q = new LinkedList<>();
+		q.add(sk);
+		
+		Node node;
+		int nr,nc,len;
 		
 		while(!q.isEmpty()) {
-			
-			c = q.poll();
-			
-			for(int i=0;i<4;i++) {
-				nr = c.r + dr[i];
-				nc = c.c + dc[i];
+			// 불 이동
+			len = fires.size();
+			for(int i=0;i<len;i++) {
+				node = fires.poll();
 				
-				if(inArea(nr,nc)) {
-					if(!visit[nr][nc] && map[nr][nc] == 0) {
-						q.add(new Cheese(nr, nc));
+				for(int j=0;j<4;j++) {
+					nr = node.r + dr[j];
+					nc = node.c + dc[j];
+					
+					if(inArea(nr, nc) && map[nr][nc] == '.') {
+						map[nr][nc] = '*';
+						fires.add(new Node(nr,nc,0));
+					}
+				}
+			}
+			
+			// 사람 이동
+			len = q.size();
+			for(int i=0;i<len;i++) {
+				node = q.poll();
+
+				for(int j=0;j<4;j++) {
+					nr = node.r + dr[j];
+					nc = node.c + dc[j];
+
+					// 범위를 벗어나면 탈출 성공
+					if(!inArea(nr, nc)) return node.t;
+					
+					if(visit[nr][nc]) continue;
+					if(map[nr][nc] == '.') {
+						q.add(new Node(nr, nc,node.t+1));
 						visit[nr][nc] = true;
-					} else if(map[nr][nc] == 1) dp[nr][nc]++;
+					}
 				}
 			}
 		}
+		// 탈출 실패
+		return Integer.MAX_VALUE;
 	}
 
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
 }
-
-
-
-
 
 
 
