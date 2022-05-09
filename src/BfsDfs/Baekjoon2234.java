@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 2234
-public class Main {
+public class Baekjoon2234 {
 
 	static int N, M, map[][], dp[][];
 	static class Node{
@@ -148,19 +146,3 @@ public class Main {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
