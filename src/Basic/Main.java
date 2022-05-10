@@ -22,7 +22,7 @@ public class Main {
 		int a,b;
 		StringBuilder sb = new StringBuilder();
 		
-		for(int i=0;i<5;i++) {
+		for(int i=0;i<n;i++) {
 			st = new StringTokenizer(br.readLine(),",");
 			a = Integer.parseInt(st.nextToken());
 			b = Integer.parseInt(st.nextToken());
