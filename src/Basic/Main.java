@@ -10,16 +10,16 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
+		
 		int result = 0;
-		char[] tmp = br.readLine().toCharArray();
+		int jumsu;
+		for(int i=0;i<5;i++) {
+			jumsu = Integer.parseInt(br.readLine());
+			if(jumsu < 40) result += 40;
+			else result += jumsu;
+		}
 		
-		for(int i=0;i<n;i++)
-			result += tmp[i] - '0';
-		
-		
-
-		System.out.println(result);
+		System.out.println(result/5);
 
 	
 
