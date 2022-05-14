@@ -3,6 +3,7 @@ package BfsDfs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -13,26 +14,26 @@ public class Main {
 	static int N, M, zero, map[][];
 
 	static class Node {
-		int r, c, num;
+		int r, c, d;
 
-		public Node(int r, int c, int num) {
+		public Node(int r, int c, int d) {
 			super();
 			this.r = r;
 			this.c = c;
-			this.num = num;
+			this.d = d;
 		}
 
 		@Override
 		public String toString() {
-			return "Node [r=" + r + ", c=" + c + ", t=" + num + "]";
+			return "Node [r=" + r + ", c=" + c + ", d=" + d + "]";
 		}
 
 	}
 
 	static int[] dr = { 0, -1, 0, 1 };
 	static int[] dc = { -1, 0, 1, 0 };
-	static boolean[][] visit;
-	static Queue<Node> virus;
+	static boolean[][][] visit;
+	static Queue<Node> route;
 
 	public static void main(String[] args) throws IOException {
 
@@ -43,71 +44,43 @@ public class Main {
 		M = Integer.parseInt(st.nextToken());
 
 		map = new int[N][M];
-		virus = new LinkedList<>();
-		visit = new boolean[N][M];
+		route = new LinkedList<>();
+		visit = new boolean[2][N][M];
+		
+		char tmp[];
 		
 		for(int i=0;i<N;i++) {
-			st = new StringTokenizer(br.readLine());
+			tmp = br.readLine().toCharArray();
 			for(int j=0;j<M;j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-				if(map[i][j] == -1) visit[i][j] = true;
-				else if(map[i][j] == 0) zero++;
-				else virus.add(new Node(i,j,map[i][j]));
+				map[i][j] = tmp[j] - '0';
 			}
 		}
 		
 		bfs();
-		countNum();
 	}
 
-	private static void countNum() {
-
-		int one = 0,two = 0,three = 0, val;
-		
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<M;j++) {
-				val = map[i][j];
-				if(val == -1) continue;
-				else if(val == 1) one++;
-				else if(val == 2) two++;
-				else three++;
-			}
-		}
-		System.out.println(one+" "+two+" "+three);
-	}
+	
 
 	private static void bfs() {
 
+		Queue<Node> q = new LinkedList<>();
+		q.add(new Node(0,0,0));
+		visit[0][0][0] = true;
 		
-		int nr,nc,size;
 		Node node;
+		int nr,nc;
 		
-		while(!virus.isEmpty()) {
-			size = virus.size();
-			for(int i=0;i<size;i++) {
-				node = virus.poll();
-				visit[node.r][node.c] = true;
-				if(map[node.r][node.c] == 3) continue;
+		while(!q.isEmpty()) {
+			node = q.poll();
+			
+			for(int i=0;i<4;i++) {
+				nr = node.r + dr[i];
+				nc = node.c + dc[i];
 				
-				for(int j=0;j<4;j++) {
-					nr = node.r + dr[j];
-					nc = node.c + dc[j];
-					
-					if(inArea(nr, nc) && !visit[nr][nc]) {
-						if(map[nr][nc] == 0) {
-							map[nr][nc] = node.num;
-							virus.add(new Node(nr, nc, map[nr][nc]));
-							zero--;
-						}
-						else {
-							if(map[nr][nc] != node.num) map[nr][nc] = 3;
-						}
-						
-					}
-				}
+				
 			}
-			if(zero == 0) break;
 		}
+		
 	}
 
 	private static boolean inArea(int nr, int nc) {
