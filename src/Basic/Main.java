@@ -13,10 +13,11 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
+		int sum = 0;
+		for(int i=0;i<5;i++)
+			sum += Math.pow(Integer.parseInt(st.nextToken()), 2);
 		
-		System.out.println(m*2-n);
+		System.out.println(sum%10);
 		
 
 	
