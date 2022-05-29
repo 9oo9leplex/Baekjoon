@@ -13,14 +13,11 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int l = Integer.parseInt(st.nextToken());
-		int p = Integer.parseInt(st.nextToken());
-		int lp = l * p ;
-		st = new StringTokenizer(br.readLine());
+		long l = Integer.parseInt(st.nextToken());
+		long p = Integer.parseInt(st.nextToken());
+		
 		StringBuilder sb = new StringBuilder();
-		for(int i=0;i<5;i++) {
-			sb.append(Integer.parseInt(st.nextToken()) - lp).append(" ");
-		}
+		sb.append(l/p).append("\n").append(l%p);
 		
 		System.out.println(sb);
 		
