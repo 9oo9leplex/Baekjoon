@@ -110,30 +110,14 @@ public class Baekjoon2234 {
 					if(!inArea(nr,nc)) continue;
 					if(size == test[nr][nc]) continue;
 					if(visit[size][test[nr][nc]]) continue;
-//					System.out.println("[start,end]: ["+size+","+test[nr][nc]+"]");
+
 					visit[size][test[nr][nc]] = visit[test[nr][nc]][size] = true;
 					doubleRoom = Math.max(dp.get(size-1)+dp.get(test[nr][nc]-1), doubleRoom);
-					
-//					if(inArea(nr,nc) && !visit[nr][nc] && size != test[nr][nc]) {
-//						doubleRoom = Math.max(dp.get(size-1)+dp.get(test[i][j]-1), doubleRoom);
-//						size = test[i][j];
-//						visit[size][test[i][j]] = visit[test[i][j]][size] = true;
-//					}
+
 				}
-				
-//				if(size != test[i][j] && !visit[size][test[i][j]]) {
-//					doubleRoom = Math.max(dp.get(size-1)+dp.get(test[i][j]-1), doubleRoom);
-//					size = test[i][j];
-//					visit[size][test[i][j]] = visit[test[i][j]][size] = true; 
-//				}
-				
 			}
 		}
 		
-//		for(int i=0;i<N;i++)System.out.println(Arrays.toString(map[i]));
-		
-//		for(int i=0;i<N;i++)System.out.println(Arrays.toString(test[i]));
-//		System.out.println(dp);
 		StringBuilder sb = new StringBuilder();
 		sb.append(room).append("\n").append(max).append("\n").append(doubleRoom);
 		System.out.println(sb);
