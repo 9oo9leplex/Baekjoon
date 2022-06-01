@@ -3,12 +3,11 @@ package BfsDfs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon14442 {
 
 	static int N,M,K, map[][],result = Integer.MAX_VALUE;
 
@@ -104,26 +103,3 @@ public class Main {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
