@@ -9,8 +9,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 19238
-public class Main {
+public class Baekjoon19238 {
 
 	static int N, M, K, map[][];
 

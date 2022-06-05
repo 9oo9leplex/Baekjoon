@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import BfsDfs.Main.Node;
-
 public class Baekjoon17142 {
 
 	static int N, M, size, cnt, map[][], newMap[][], day = Integer.MAX_VALUE;

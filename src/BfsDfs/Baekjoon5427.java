@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-import BfsDfs.Main.Node;
-
 public class Baekjoon5427 {
 
 	static int N, M;
