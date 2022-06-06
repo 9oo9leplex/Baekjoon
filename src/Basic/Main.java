@@ -11,11 +11,15 @@ public class Main {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
 		
-		long a = Integer.parseInt(st.nextToken());
-		long b = Integer.parseInt(st.nextToken());
-		long result = (a+b)*(a-b);
-		System.out.println(result);
+		sb.append(1 - Integer.parseInt(st.nextToken())).append(" ")
+			.append(1 - Integer.parseInt(st.nextToken())).append(" ")
+			.append(2 - Integer.parseInt(st.nextToken())).append(" ")
+			.append(2 - Integer.parseInt(st.nextToken())).append(" ")
+			.append(2 - Integer.parseInt(st.nextToken())).append(" ")
+			.append(8 - Integer.parseInt(st.nextToken())).append(" ");
+		System.out.println(sb);
 	}
 }
 
