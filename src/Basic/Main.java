@@ -11,15 +11,9 @@ public class Main {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		StringBuilder sb = new StringBuilder();
 		
-		sb.append(1 - Integer.parseInt(st.nextToken())).append(" ")
-			.append(1 - Integer.parseInt(st.nextToken())).append(" ")
-			.append(2 - Integer.parseInt(st.nextToken())).append(" ")
-			.append(2 - Integer.parseInt(st.nextToken())).append(" ")
-			.append(2 - Integer.parseInt(st.nextToken())).append(" ")
-			.append(8 - Integer.parseInt(st.nextToken())).append(" ");
-		System.out.println(sb);
+		long result = Long.parseLong(st.nextToken()) + Long.parseLong(st.nextToken()) + Long.parseLong(st.nextToken());
+		System.out.println(result);
 	}
 }
 
