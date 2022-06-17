@@ -7,8 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 19238
-public class Main {
+public class Baekjoon16973 {
 
 	static int N,M,map[][];
 	static class Rectangle{
@@ -145,21 +144,3 @@ public class Main {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
