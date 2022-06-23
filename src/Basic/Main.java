@@ -13,11 +13,13 @@ public class Main {
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		int r = Integer.parseInt(st.nextToken());
-		int c = Integer.parseInt(st.nextToken());
-		int index = Integer.parseInt(st.nextToken());
+		int n1 = Integer.parseInt(st.nextToken());
+		int k1 = Integer.parseInt(st.nextToken());
+		int n2 = Integer.parseInt(st.nextToken());
+		int k2 = Integer.parseInt(st.nextToken());
 		
-		System.out.println(index/c+" "+index%c);
+		
+		System.out.println(n1*k1 + n2*k2);
 		
 		
 		
