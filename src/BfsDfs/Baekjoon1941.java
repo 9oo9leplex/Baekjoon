@@ -1,4 +1,4 @@
-package Basic;
+package BfsDfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main {		
-	
+public class Baekjoon1941 {
+
 	static char[][] map;
 	static int num[], answer;
 	static class Point {
@@ -89,20 +89,4 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nr < 5 && nc >= 0 && nc < 5;
 	}
-
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
