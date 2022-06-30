@@ -1,4 +1,4 @@
-package Basic;
+package BfsDfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {		
-	
+public class Baekjoon20005 {
+
 	static int N,M;
 	static char[][] map;
 	static class Player {
@@ -139,20 +139,4 @@ public class Main {
 	private static boolean inArea(int nr, int nc) {
 		return nr >= 0 && nr < N && nc >= 0 && nc < M;
 	}
-
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
