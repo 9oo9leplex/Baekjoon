@@ -7,28 +7,38 @@ import java.util.StringTokenizer;
 
 public class Main {		
 	
-	
-	
 	public static void main(String[] args) throws IOException{
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	
-		
-		int apple = 0, orange = 0;
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		apple = Integer.parseInt(st.nextToken());
-		orange = Integer.parseInt(st.nextToken());
-		
-		st = new StringTokenizer(br.readLine());
-		orange += Integer.parseInt(st.nextToken());
-		apple += Integer.parseInt(st.nextToken());
-		
-		System.out.println(Math.min(apple, orange));
-		
-		
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			StringBuilder sb = new StringBuilder();
+			StringTokenizer st;
+			
+			for(int i=0;i<3;i++) {
+				st = new StringTokenizer(br.readLine());
+				
+				int sh = Integer.parseInt(st.nextToken());
+				int sm = Integer.parseInt(st.nextToken());
+				int ss = Integer.parseInt(st.nextToken());
+				
+//				st = new StringTokenizer(br.readLine());
+				int eh = Integer.parseInt(st.nextToken());
+				int em = Integer.parseInt(st.nextToken());
+				int es = Integer.parseInt(st.nextToken());
+				
+				if(ss > es) {
+					em--;
+					es += 60 - ss;
+				} else es -= ss;
+				if(sm > em) {
+					eh--;
+					em += 60 - sm;
+				} else em -= sm;
+				sb.append(eh - sh).append(" ").append(em).append(" ").append(es).append("\n");
+			}
+			System.out.println(sb);
 		
 	}
+
 }
 
 
