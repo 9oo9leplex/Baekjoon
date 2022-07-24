@@ -3,7 +3,6 @@ package Basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Main {		
 	
@@ -11,15 +10,10 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int[] arr = new int[4];
-			for(int i=0;i<4;i++) arr[i] = Integer.parseInt(br.readLine());
+			int a = Integer.parseInt(br.readLine());
+			int b = Integer.parseInt(br.readLine());
 			
-			Arrays.sort(arr);
-			
-			int answer = Math.max(Integer.parseInt(br.readLine()), Integer.parseInt(br.readLine()));
-			for(int i=3;i>0;i--) answer += arr[i];
-			
-			System.out.println(answer);
+			System.out.println(2 * 3.141592 * b + 2 * a);
 			
 	}
 
