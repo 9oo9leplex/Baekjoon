@@ -10,11 +10,12 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int a = Integer.parseInt(br.readLine());
-			int b = Integer.parseInt(br.readLine());
+			String[] s = br.readLine().split("/");
+			int k = Integer.parseInt(s[0]);
+			int d = Integer.parseInt(s[1]);
+			int a = Integer.parseInt(s[2]);
 			
-			System.out.println(2 * 3.141592 * b + 2 * a);
-			
+			System.out.println((k+a < d || d == 0 ? "hasu" : "gosu"));
 	}
 
 }
