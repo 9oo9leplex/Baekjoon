@@ -10,14 +10,25 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			String[] s = br.readLine().split("/");
-			int k = Integer.parseInt(s[0]);
-			int d = Integer.parseInt(s[1]);
-			int a = Integer.parseInt(s[2]);
+			String input = br.readLine();
 			
-			System.out.println((k+a < d || d == 0 ? "hasu" : "gosu"));
+			int len = input.length();
+			if(len % 2 == 0) {
+//				System.out.println(Integer.parseInt(input.substring(0)));
+//				System.out.println(Integer.parseInt(input.substring(len/2)));
+				System.out.println(Integer.parseInt(input.substring(0,len/2)) + Integer.parseInt(input.substring(len/2)));
+				return;
+			}
+			else {
+				int first = Integer.parseInt(input.substring(0,2));
+				int second = Integer.parseInt(input.substring(1,3));
+				
+				if(first > 10) System.out.println(input.charAt(0) - '0' + second);
+				else System.out.println(first + input.charAt(2) - '0');
+				
+			}
+			
 	}
-
 }
 
 
