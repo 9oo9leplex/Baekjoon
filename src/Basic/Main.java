@@ -3,6 +3,8 @@ package Basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {		
 	
@@ -10,23 +12,14 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			String input = br.readLine();
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			
-			int len = input.length();
-			if(len % 2 == 0) {
-//				System.out.println(Integer.parseInt(input.substring(0)));
-//				System.out.println(Integer.parseInt(input.substring(len/2)));
-				System.out.println(Integer.parseInt(input.substring(0,len/2)) + Integer.parseInt(input.substring(len/2)));
-				return;
-			}
-			else {
-				int first = Integer.parseInt(input.substring(0,2));
-				int second = Integer.parseInt(input.substring(1,3));
-				
-				if(first > 10) System.out.println(input.charAt(0) - '0' + second);
-				else System.out.println(first + input.charAt(2) - '0');
-				
-			}
+			int[] arr = new int[4];
+			for(int i=0;i<4;i++) arr[i] = Integer.parseInt(st.nextToken());
+			
+			Arrays.sort(arr);
+			
+			System.out.println(Math.abs(arr[3] + arr[0] - arr[2] - arr[1]));
 			
 	}
 }
