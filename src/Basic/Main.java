@@ -3,6 +3,7 @@ package Basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {		
 	
@@ -10,19 +11,13 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int a = Integer.parseInt(br.readLine());
-			char[] b = br.readLine().toCharArray();
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			
-			StringBuilder sb = new StringBuilder();
-			int sum = 0;
-			int tmp,idx = 0;
-			for(int i=2;i>=0;i--) {
-				tmp = a * (b[i] - '0') ;
-				sb.append(tmp).append("\n");
-				sum += tmp * (int)Math.pow(10, idx++);
-			}
-			sb.append(sum);
-			System.out.println(sb);
+			int s = Integer.parseInt(st.nextToken());
+			int t = Integer.parseInt(st.nextToken());
+			int d = Integer.parseInt(st.nextToken());
+			
+			System.out.println(d / (s*2) * t);
 			
 	}
 }
