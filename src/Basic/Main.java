@@ -15,9 +15,9 @@ public class Main {
 			
 			int s = Integer.parseInt(st.nextToken());
 			int t = Integer.parseInt(st.nextToken());
-			int d = Integer.parseInt(st.nextToken());
+			int d = Integer.parseInt(br.readLine());
 			
-			System.out.println(d / (s*2) * t);
+			System.out.println(s+t < d * 2 ? s+t : s+t-d*2);
 			
 	}
 }
