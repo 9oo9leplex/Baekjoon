@@ -3,7 +3,6 @@ package Basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Main {		
 	
@@ -11,13 +10,20 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			
-			int s = Integer.parseInt(st.nextToken());
-			int t = Integer.parseInt(st.nextToken());
+			int a = Integer.parseInt(br.readLine());
+			int b = Integer.parseInt(br.readLine());
+			int c = Integer.parseInt(br.readLine());
 			int d = Integer.parseInt(br.readLine());
+			int e = Integer.parseInt(br.readLine());
+			int sum = 0;
 			
-			System.out.println(s+t < d * 2 ? s+t : s+t-d*2);
+			if(a < 0) {
+				sum += -a * c;
+				a = 0;
+			}
+			if(a == 0) sum += d;
+			sum += (b-a) * e;
+			System.out.println(sum);
 			
 	}
 }
