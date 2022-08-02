@@ -3,6 +3,7 @@ package Basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon19698 {
 
@@ -10,20 +11,14 @@ public static void main(String[] args) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int a = Integer.parseInt(br.readLine());
-		int b = Integer.parseInt(br.readLine());
-		int c = Integer.parseInt(br.readLine());
-		int d = Integer.parseInt(br.readLine());
-		int e = Integer.parseInt(br.readLine());
-		int sum = 0;
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		if(a < 0) {
-			sum += -a * c;
-			a = 0;
-		}
-		if(a == 0) sum += d;
-		sum += (b-a) * e;
-		System.out.println(sum);
+		int n = Integer.parseInt(st.nextToken());
+		int w = Integer.parseInt(st.nextToken());
+		int h = Integer.parseInt(st.nextToken());
+		int l = Integer.parseInt(st.nextToken());
+//		int result = w/l * h/l;
+		System.out.println(Math.min(n, w/l * h/l));
 		
 }
 }
