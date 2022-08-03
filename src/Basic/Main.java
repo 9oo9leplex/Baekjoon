@@ -13,11 +13,16 @@ public class Main {
 	
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			
-			int a = Integer.parseInt(st.nextToken());
-			int b = Integer.parseInt(st.nextToken());
-			int c = Integer.parseInt(st.nextToken());
+			int h = Integer.parseInt(st.nextToken());
+			int m = Integer.parseInt(st.nextToken());
 			
-			System.out.println(Math.max(a*b/c, a/b*c));
+			if(m < 45) {
+				h--;
+				m += 15;
+			} else m -= 45;
+			if(h < 0) h = 23;
+			
+			System.out.println(h+" "+m);
 	}
 }
 
