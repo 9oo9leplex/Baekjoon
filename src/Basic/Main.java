@@ -12,22 +12,25 @@ public class Main {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 			StringTokenizer st;
+			StringBuilder sb = new StringBuilder();
+			int a,b;
 			
-			int in,out,sum = 0,max = 0;
-			
-			for(int i=0;i<4;i++) {
+			while(true) {
 				st = new StringTokenizer(br.readLine());
+				a = Integer.parseInt(st.nextToken());
+				b = Integer.parseInt(st.nextToken());
 				
-				out = Integer.parseInt(st.nextToken());
-				in = Integer.parseInt(st.nextToken());
-				
-				sum -= out;
-				sum += in;
-				max = Math.max(max, sum);
-				
+				if(a == 0 && b == 0) break;
+				if(a > b) {
+					if(a % b == 0) sb.append("multiple").append("\n");
+					else sb.append("neither").append("\n");
+				}
+				else {
+					if(b % a == 0) sb.append("factor").append("\n");
+					else sb.append("neither").append("\n");
+				}
 			}
-			System.out.println(max);
-			
+			System.out.println(sb);
 	}
 }
 
