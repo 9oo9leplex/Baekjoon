@@ -10,21 +10,13 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int result = -1;
-			int cur,min = Integer.MAX_VALUE;
+			int n = Integer.parseInt(br.readLine());
 			
-			for(int i=0;i<7;i++) {
-				cur = Integer.parseInt(br.readLine());
-				if(cur % 2 != 0) {
-					result += cur;
-					min = Math.min(min, cur);
-				}
+			int[] vote = new int[2];
+			for(int i=0;i<n;i++) {
+				vote[Integer.parseInt(br.readLine())]++;
 			}
-			if(result != -1) {
-				System.out.println(++result);
-				System.out.println(min);
-			}
-			else System.out.println(-1);
+			System.out.println(vote[0] > vote[1] ? "Junhee is not cute!" : "Junhee is cute!");
 	}
 }
 
