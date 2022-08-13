@@ -3,6 +3,7 @@ package Basic;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {		
 	
@@ -10,13 +11,19 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int n = Integer.parseInt(br.readLine());
+			StringTokenizer st;
+			int sum, result = 0,index = 0;
 			
-			int[] vote = new int[2];
-			for(int i=0;i<n;i++) {
-				vote[Integer.parseInt(br.readLine())]++;
+			for(int i=1;i<=5;i++) {
+				st = new StringTokenizer(br.readLine());
+				sum = 0;
+				for(int j=0;j<4;j++) sum += Integer.parseInt(st.nextToken());
+				if(result < sum) {
+					result = sum;
+					index = i;
+				}
 			}
-			System.out.println(vote[0] > vote[1] ? "Junhee is not cute!" : "Junhee is cute!");
+			System.out.println(index + " " + result);
 	}
 }
 
