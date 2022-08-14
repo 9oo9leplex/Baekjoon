@@ -11,19 +11,22 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			StringTokenizer st;
-			int sum, result = 0,index = 0;
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int n = Integer.parseInt(st.nextToken());
+			int k = Integer.parseInt(st.nextToken());
 			
-			for(int i=1;i<=5;i++) {
-				st = new StringTokenizer(br.readLine());
-				sum = 0;
-				for(int j=0;j<4;j++) sum += Integer.parseInt(st.nextToken());
-				if(result < sum) {
-					result = sum;
-					index = i;
-				}
+			int arr[] = new int[n];
+			int idx = 0;
+			
+			for(int i=1;i<=n;i++) {
+				if(n%i == 0) arr[idx++] = i;
 			}
-			System.out.println(index + " " + result);
+			
+			if(idx <= k) {
+				System.out.println(0);
+				return;
+			}
+			System.out.println(arr[k-1]);
 	}
 }
 
