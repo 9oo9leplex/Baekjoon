@@ -12,24 +12,25 @@ public class Main {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 			int n = Integer.parseInt(br.readLine());
-			int r,e,f;
 			
-			StringTokenizer st;
-			StringBuilder sb = new StringBuilder();
-			String s = "";
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int idx = 0, sum = 0;
 			
 			for(int i=0;i<n;i++) {
-				st = new StringTokenizer(br.readLine());
-				r = Integer.parseInt(st.nextToken());
-				e = Integer.parseInt(st.nextToken());
-				f = Integer.parseInt(st.nextToken());
-				
-				if(r < e-f) s = "advertise";
-				else if(r == e-f) s = "does not matter";
-				else s = "do not advertise";
-				sb.append(s).append("\n");
+				if(Integer.parseInt(st.nextToken()) == 1) idx++;
+				else {
+					for(int j=1;j<=idx;j++) {
+						sum += j;
+					}
+					idx = 0;
+				}
 			}
-			System.out.println(sb);
+			
+			for(int j=1;j<=idx;j++) {
+				sum += j;
+			}
+			
+			System.out.println(sum);
 	}
 }
 
