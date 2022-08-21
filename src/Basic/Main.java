@@ -11,26 +11,44 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int n = Integer.parseInt(br.readLine());
-			
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			int idx = 0, sum = 0;
 			
-			for(int i=0;i<n;i++) {
-				if(Integer.parseInt(st.nextToken()) == 1) idx++;
+			int w = Integer.parseInt(st.nextToken());
+			int m = Integer.parseInt(st.nextToken());
+			int i = Integer.parseInt(st.nextToken());
+			
+			int tmp = m * 2;
+			int team = 0;
+			if(w >= tmp) {
+				team = m;
+				w -= tmp;
+				m = 0;
+				
+				tmp = w;
+			}
+			else {
+				team = w / 2;
+				m -= w / 2;
+				if( w % 2 == 0) w = 1;
+				else w = 0;
+				
+				tmp = m + w;
+			}
+			
+			i -= tmp;
+//			System.out.println("[w,m,i,team]: ["+w+","+m+","+i+","+team+"]");
+			if(i <= 0) {
+				System.out.println(team);
+				return;
+			}
+			else {
+				if(i%3 == 0) team -= i / 3;
 				else {
-					for(int j=1;j<=idx;j++) {
-						sum += j;
-					}
-					idx = 0;
+					team -= i / 3;
+					team--;
 				}
 			}
-			
-			for(int j=1;j<=idx;j++) {
-				sum += j;
-			}
-			
-			System.out.println(sum);
+			System.out.println(team <= 0 ? 0 : team);
 	}
 }
 
