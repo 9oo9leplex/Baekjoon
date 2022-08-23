@@ -11,20 +11,18 @@ public class Main {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-			int n = Integer.parseInt(br.readLine());
-			
 			StringTokenizer st;
-			int person,apple,result = 0;
+			int result = 0,max = 0;
 			
-			for(int i=0;i<n;i++) {
+			for(int i=0;i<10;i++) {
 				st = new StringTokenizer(br.readLine());
+				result -= Integer.parseInt(st.nextToken());
+				result += Integer.parseInt(st.nextToken());
 				
-				person = Integer.parseInt(st.nextToken());
-				apple = Integer.parseInt(st.nextToken());
-				
-				result += (apple % person);
+				max = Math.max(max, result);
 			}
-			System.out.println(result);
+			System.out.println(max);
+			
 			
 	}
 }
