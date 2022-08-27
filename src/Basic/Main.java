@@ -12,22 +12,22 @@ public class Main {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 			int n = Integer.parseInt(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			
-			int c,sum;
-			StringTokenizer st;
-			StringBuilder sb = new StringBuilder();
-			
+			int y = 0,m = 0,cur;
 			for(int i=0;i<n;i++) {
-				c = Integer.parseInt(br.readLine());
-				st = new StringTokenizer(br.readLine());
-				sum = 0;
+				cur = Integer.parseInt(st.nextToken());
 				
-				for(int j=0;j<c;j++) {
-					sum += Integer.parseInt(st.nextToken());
-				}
-				sb.append(sum).append("\n");
+				y += 10 * (cur / 30);
+				m += 15 * (cur / 60);
+				
+				if(cur % 29 != 0) y += 10;
+				if(cur % 59 != 0) m += 15;
 			}
-			System.out.println(sb);
+			
+			if(y > m) System.out.println("M "+ m);
+			else if(y < m) System.out.println("Y " + y);
+			else System.out.println("Y M "+m);
 	}
 }
 
