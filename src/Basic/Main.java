@@ -4,31 +4,35 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
 
-	static int r,c,result;
-	static char[][] map;
-	static class Node {
-		int r,c,t;
+	static int n,k,map[][];
+	static class Virus implements Comparable<Virus> {
+		int r,c,n;
 
-		public Node(int r, int c, int t) {
+		public Virus(int r, int c, int n) {
 			super();
 			this.r = r;
 			this.c = c;
-			this.t = t;
+			this.n = n;
 		}
 
 		@Override
 		public String toString() {
-			return "Node [r=" + r + ", c=" + c + ", t=" + t + "]";
+			return "Virus [r=" + r + ", c=" + c + ", n=" + n + "]";
 		}
+
+		@Override
+		public int compareTo(Virus o) {
+			return this.n - o.n;
+		}
+		
 	}
-	
-	static Node jihun;
-	static Queue<Node> fires;
+	static PriorityQueue<Virus> pq;
 	static int[] dr = {-1,0,1,0};
 	static int[] dc = {0,1,0,-1};
 	
@@ -38,84 +42,60 @@ public class Main {
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		r = Integer.parseInt(st.nextToken());
-		c = Integer.parseInt(st.nextToken());
+		n = Integer.parseInt(st.nextToken());
+		k = Integer.parseInt(st.nextToken());
 		
-		map = new char[r][c];
-		char[] cur;
-		fires = new LinkedList<>();
+		map = new int[n][n];
+		pq = new PriorityQueue<>();
 		
-		for(int i=0;i<r;i++) {
-			cur = br.readLine().toCharArray();
-			for(int j=0;j<c;j++) {
-				map[i][j] = cur[j];
-				if(cur[j] == 'J') {
-					jihun = new Node(i, j, 0);
-					map[i][j] = '.';
-				}
-				else if(cur[j] == 'F') fires.add(new Node(i, j, 0));
+		for(int i=0;i<n;i++) {
+			st = new StringTokenizer(br.readLine());
+			for(int j=0;j<n;j++) {
+				map[i][j] = Integer.parseInt(st.nextToken());
+				if(map[i][j] != 0) pq.add(new Virus(i, j, map[i][j]));
 			}
 		}
-		bfs();
 		
-		if(result == 0) System.out.println("IMPOSSIBLE");
-		else System.out.println(result);
+		st = new StringTokenizer(br.readLine());
+		int t = Integer.parseInt(st.nextToken());
+		int r = Integer.parseInt(st.nextToken()) - 1;
+		int c = Integer.parseInt(st.nextToken()) - 1;
+		bfs(t);
+		
+		System.out.println(map[r][c]);
 	}
 
-	private static void bfs() {
+	private static void bfs(int t) {
 
-		Queue<Node> q = new LinkedList<>();
-		q.add(jihun);
-
-		boolean[][] visit = new boolean[r][c];
+		int time = 0,len,nr,nc;
+		Virus cur;
+		Queue<Virus> q = new LinkedList<>();
+		while(!pq.isEmpty()) q.add(pq.poll());
 		
-		Node cur;
-		Node fire;
-		int nr,nc,len;
-		
-		while(!q.isEmpty()) {
-			
-			len = fires.size();
-			for(int i=0;i<len;i++) {
-				fire = fires.poll();
-				for(int j=0;j<4;j++) {
-					nr = fire.r + dr[j];
-					nc = fire.c + dc[j];
-					
-					if(inArea(nr,nc) && map[nr][nc] == '.')	{
-						map[nr][nc] = 'F';
-						fires.add(new Node(nr, nc, 0));
-					}
-				}
-			}
+		while(t > time) {
 			
 			len = q.size();
-			for(int k=0;k<len;k++) {
-				cur = q.poll();
+			for(int i=0;i<len;i++) {
 				
-				for(int i=0;i<4;i++) {
-					nr = cur.r + dr[i];
-					nc = cur.c + dc[i];
+				cur = q.poll();
+				for(int j=0;j<4;j++) {
+					nr = cur.r + dr[j];
+					nc = cur.c + dc[j];
 					
-//					System.out.println("[nr,nc]: ["+nr+","+nc+"]");
-					
-					if(!inArea(nr,nc)) {
-						result = cur.t+1;
-						return;
-					}
-					
-					
-					if(!visit[nr][nc] && map[nr][nc] == '.') {
-						visit[nr][nc] = true;
-						q.add(new Node(nr, nc, cur.t+1));
+					if(inArea(nr,nc) && map[nr][nc] == 0) {
+						map[nr][nc] = cur.n;
+						q.add(new Virus(nr, nc, cur.n));
 					}
 				}
 			}
-			
+//			for(int i=0;i<n;i++) System.out.println(Arrays.toString(map[i]));
+//			System.out.println();
+			time++;
 		}
+		
 	}
 
 	private static boolean inArea(int nr, int nc) {
-		return nr >= 0 && nr < r && nc >= 0 && nc < c;
+		return nr >= 0 && nr < n && nc >= 0 && nc < n;
 	}
 }
