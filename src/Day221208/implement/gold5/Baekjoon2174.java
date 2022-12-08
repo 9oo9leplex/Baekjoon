@@ -1,4 +1,4 @@
-package Implementation;
+package Day221208.implement.gold5;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Baekjoon2174 {
 
 	static class Robot {
 		int r,c,d;
@@ -118,20 +118,5 @@ public class Main {
 	static boolean inArea(int a, int b, int nr, int nc) {
 		return nr >= 0 && nr < b && nc >= 0 && nc < a;
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -17,7 +17,7 @@ public class Problem {
 	static int dc[] = {0,1,0,-1};
 	static boolean[][] visit;
 	static int r,c;
-	static class Node {
+	static class Node implements Comparable<Node>{
 		int r,c;
 		char word;
 		public Node(int r, int c, char word) {
@@ -26,6 +26,13 @@ public class Problem {
 			this.c = c;
 			this.word = word;
 		}
+		
+		@Override
+		public int compareTo(Node o) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+	
 	}
 	static Queue<Node> q;
 	
@@ -39,6 +46,16 @@ public class Problem {
 		c = maps[0].length();
 		
 		visit = new boolean[r][c];
+		
+		HashMap<String,Integer> hm = new HashMap<>();
+		List<Map.Entry<String, Integer>> entry = new ArrayList<>(hm.entrySet());
+		
+		entry.sort(new Comparator<Map.Entry<String, Integer>>(){
+			@Override
+			public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+				return o1.getValue() - o2.getValue();
+			}
+		});
 		
 		System.out.println(bfs(maps));
 	}
